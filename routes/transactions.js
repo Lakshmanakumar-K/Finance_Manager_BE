@@ -101,7 +101,6 @@ transactionsRouter.post("/delete", async (req, res) => {
 
 transactionsRouter.post("/aggregate",async (req,res)=>{
     const { userId } = req.body;
-    console.log(userId);
     const total = await transactionModel.aggregate([{
         $match: { userId },
       },
@@ -120,6 +119,5 @@ transactionsRouter.post("/aggregate",async (req,res)=>{
           _id: 0,
         },
       },]);
-      console.log(total);
-      res.json(total);
+      res.status(200).json(total);
 })
